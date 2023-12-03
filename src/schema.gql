@@ -1,0 +1,63 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Cuenta {
+  id: ID!
+  description: String!
+  estado: Boolean!
+  clientes: Cliente!
+}
+
+type Cliente {
+  id: ID!
+  nombre: String!
+  cedula: String!
+  edad: String!
+  estado: Boolean!
+  cuentas: [Cuenta!]
+}
+
+type Query {
+  clients(id: ID!): Cliente!
+  cuentass: [Cuenta!]!
+}
+
+type Mutation {
+  createCliente(createClienteInput: CreateClienteInput!): Cliente!
+  updateCliente(updateEstudianteInput: UpdateEstudianteInput!): Cliente!
+  removeCliente(id: ID!): Cliente!
+  createCuentass(createCuentassInput: CreateCuentaInput!): Cuenta!
+  updateCuentass(updateCuentassInput: UpdateCuentassInput!): Cuenta!
+  removeCuentass(id: ID!): Cuenta!
+}
+
+input CreateClienteInput {
+  nombre: String!
+  cedula: String!
+  edad: String!
+  estado: Boolean!
+  cuentas: [CreateCuentaInput!]
+}
+
+input CreateCuentaInput {
+  estado: Boolean
+  description: String
+  clienteId: String!
+}
+
+input UpdateEstudianteInput {
+  nombre: String
+  cedula: String
+  edad: String
+  estado: Boolean
+  cuentas: [CreateCuentaInput!]
+  id: ID!
+}
+
+input UpdateCuentassInput {
+  estado: Boolean
+  description: String
+  clienteId: String
+  id: ID!
+}
