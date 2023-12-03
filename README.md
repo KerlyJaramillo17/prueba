@@ -15,7 +15,6 @@
 ![](/img/workflows-correcto.jpeg)
 
 ## Muestra de Actualizacion de version
-![](/img/Dockerhub-versionactualizada.jpeg)
 
 
 
