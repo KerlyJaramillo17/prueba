@@ -1,12 +1,21 @@
-Imagenes de que todo Funciona correctamente
-Imagen de Muestra de DockerHub y Github
+## Imagenes de que todo Funciona correctamente
+## DockerHub y Github
 ![](/img/Github.jpeg)
 
 ![](/img/Workflows-github.jpeg)
 
 ![](/img/Dockerhub.jpeg)
 
-Muestra de Actualizacion de version
+## Relizando commit
+![](/img/commit.jpeg)
+![](/img/commit%20subido.jpeg)
+
+## Verificanndo en Github-workflows
+![](/img/workflows-ejecutandose.jpeg)
+![](/img/workflows-correcto.jpeg)
+
+## Muestra de Actualizacion de version
+![](/img/Dockerhub-versionactualizada.jpeg)
 
 
 
