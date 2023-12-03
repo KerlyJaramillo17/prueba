@@ -35,12 +35,12 @@ jobs:
         env:
           NEW_VERSION: ${{ steps.version.outputs.version }}
         run: |
-          docker build -t KerlyJaramillo17/docker-graphql:$NEW_VERSION .
-          docker build -t KerlyJaramillo17/docker-graphql:latest .
+          docker build -t kerlyjaramillo17/docker-graphql:$NEW_VERSION .
+          docker build -t kerlyjaramillo17/docker-graphql:latest .
 
       - name: Push Docker Image
         env:
           NEW_VERSION: ${{ steps.version.outputs.version }}
         run: |
-          docker push KerlyJaramillo17/docker-graphql:$NEW_VERSION
-          docker push KerlyJaramillo17/docker-graphql:latest
+          docker push kerlyjaramillo17/docker-graphql:$NEW_VERSION
+          docker push kerlyjaramillo17/docker-graphql:latest
