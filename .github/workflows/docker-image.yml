@@ -1,46 +1,52 @@
 name: Docker Image CI
+
 on:
   push:
     branches: ['main']
   pull_request:
     branches: ['main']
   workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    # - explicación: Los siguientes pasos son ejecutados al realizar un git push
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
       - name: Git Semantic Version
         uses: PaulHatch/semantic-version@v4.0.3
         with:
           major_pattern: 'ci:'
           minor_pattern: 'feat:'
-          # format: '${increment}.${increment}.${patch}'
           format: '${major}.${minor}.${patch}-prerelease${increment}'
         id: version
+
+      - name: Generate Random Number
+        run: echo "RANDOM_NUMBER=$((1 + RANDOM % 1000))" >> $GITHUB_ENV
 
       - name: Docker Login
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
       - name: Build Docker Image
         env:
           NEW_VERSION: ${{ steps.version.outputs.version }}
+          RANDOM_NUMBER: ${{ env.RANDOM_NUMBER }}
         run: |
-          docker build -t kerlyjaramillo17/docker-graphql:$NEW_VERSION .
+          docker build -t kerlyjaramillo17/docker-graphql:${NEW_VERSION}-${RANDOM_NUMBER} .
           docker build -t kerlyjaramillo17/docker-graphql:latest .
 
       - name: Push Docker Image
         env:
           NEW_VERSION: ${{ steps.version.outputs.version }}
+          RANDOM_NUMBER: ${{ env.RANDOM_NUMBER }}
         run: |
-          docker push kerlyjaramillo17/docker-graphql:$NEW_VERSION
+          docker push kerlyjaramillo17/docker-graphql:${NEW_VERSION}-${RANDOM_NUMBER}
           docker push kerlyjaramillo17/docker-graphql:latest
